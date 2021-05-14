@@ -1,0 +1,19 @@
+{
+  "name": "to-icon",
+  "version": "1.0.1",
+  "license": "MIT",
+
+  "author": "JDK <JDK.FHWS@gmail.com> (https://github.com/JDK-Delta)",
+
+  "keywords": [ "Ico" , "Icon" , "PNG" , "Image" , "Convert" , "Conversion" ],
+
+  "engines": { "node": ">=14" },
+  "dependencies": { "parse-png": "^5.2.0" },
+
+  "main": "source/Module.js",
+  "files": [ "source/*.js" ],
+
+  "repository": "github:OmegaTools/toIcon",
+  "bugs": { "url": "https://github.com/OmegaTools/toIcon/issues" },
+  "homepage": "https://github.com/OmegaTools"
+}
