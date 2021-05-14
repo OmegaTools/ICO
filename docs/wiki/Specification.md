@@ -1,7 +1,7 @@
-#Specification
+# Specification
 
 
-##Header
+## Header
 
 | **Offset** | **Size** | **Description** |
 | :---:  | :---: | :--- |
@@ -10,7 +10,7 @@
 | 4 | 2 | Image count |
 
 
-##Image Directory
+## Image Directory
 
 | **Offset** | **Size** | **Description** |
 | :---:  | :---: | :--- |
