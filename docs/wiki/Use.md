@@ -1,7 +1,7 @@
-#How to Use
+# How to Use
 
 
-###Generalized
+### Generalized
 ```js
 
   const toIcon = require('to-icon');
@@ -16,7 +16,7 @@
 ```
 
 
-###Example
+### Example
 ```js
 
   const

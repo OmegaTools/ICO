@@ -1,4 +1,4 @@
-#Installation
+# Installation
 
 ```
 $ npm i to-icon

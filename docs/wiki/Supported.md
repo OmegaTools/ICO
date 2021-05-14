@@ -1,2 +1,2 @@
-#Supported Formats
+# Supported Formats
 * `PNG`
