@@ -1,14 +1,14 @@
 {
   "name": "to-icon",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "license": "MIT",
 
   "author": "JDK <JDK.FHWS@gmail.com> (https://github.com/JDK-Delta)",
 
   "keywords": [ "Ico" , "Icon" , "PNG" , "Image" , "Convert" , "Conversion" ],
 
-  "engines": { "node": ">=14" },
-  "dependencies": { "parse-png": "^5.2.0" },
+  "engines": { "node": ">=10" },
+  "dependencies": { "parse-png": "^2.1.0" },
 
   "main": "source/Module.js",
   "files": [ "source/*.js" ],

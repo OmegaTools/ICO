@@ -4,7 +4,7 @@
 ###Generalized
 ```js
 
-  const toIcon = require('toIcon');
+  const toIcon = require('to-icon');
 
 
   const buffers = [ buffer1 , buffer2 , buffer3 ];
@@ -21,7 +21,7 @@
 
   const
     fileSystem = require('fs'),
-    toIcon = require('toIcon');
+    toIcon = require('to-icon');
 
 
   const paths = [ '30x30.png' , '50x50.png' ];

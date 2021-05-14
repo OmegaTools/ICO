@@ -1,6 +1,6 @@
 const
   fileSystem = require('fs'),
-  toIcon = require('toIcon');
+  toIcon = require('to-icon');
 
 
 const paths = [ '30x30.png' , '50x50.png' ];
