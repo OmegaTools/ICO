@@ -2,7 +2,7 @@
 
 
 ## Limitations
-* [Windows](./wiki/limitations/Windows.md)
+* [Windows](./limitations/Windows.md)
 
 
 ### Generalized
