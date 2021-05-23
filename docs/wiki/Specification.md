@@ -22,3 +22,13 @@
 | 6 | 2 | Bits Per Pixel |
 | 8 | 4 | Size in Bytes |
 | 12 | 4 | Offset of Image Data |
+
+
+## PNG Structure
+
+### Chunk
+![PNG Chunk](./assets/Chunk.png)
+
+
+### IHDR
+![IHDR Chunk](./assets/IHDR.png)

@@ -38,10 +38,10 @@ module.exports = class {
 
 
     this
-      .prepareBuffer(Size.header) // 6
-      .writeWord(0)               // Reserved
-      .writeWord(1)               // ICO / CUR
-      .writeWord(imageCount);     // Image Count
+    .prepareBuffer(Size.header) // 6
+    .writeWord(0)               // Reserved
+    .writeWord(1)               // ICO / CUR
+    .writeWord(imageCount);     // Image Count
   }
 
 
@@ -62,15 +62,15 @@ module.exports = class {
 
 
     this
-      .prepareBuffer(Size.directory) // 16
-      .writeByte(width)              // Width
-      .writeByte(height)             // Height
-      .writeByte(0)                  // Color Palette
-      .writeByte(0)                  // Reserved
-      .writeWord(1)                  // Color Plane
-      .writeWord(bpp * 8)            // Bits Per Pixel
-      .writeDWord(size)              // Byte Size
-      .writeDWord(this.#offset);     // Image Data Offset
+    .prepareBuffer(Size.directory) // 16
+    .writeByte(width)              // Width
+    .writeByte(height)             // Height
+    .writeByte(0)                  // Color Palette
+    .writeByte(0)                  // Reserved
+    .writeWord(1)                  // Color Plane
+    .writeWord(bpp * 8)            // Bits Per Pixel
+    .writeDWord(size)              // Byte Size
+    .writeDWord(this.#offset);     // Image Data Offset
 
 
     this.#offset += size;
@@ -84,18 +84,18 @@ module.exports = class {
   addBitmapHeader({ width , height , bpp , size , data }){
 
     this
-      .prepareBuffer(40)       // 40
-      .writeDWord(40)          // Header Size
-      .writeDWord(width)       // Width
-      .writeDWord(height)      // Height
-      .writeWord(1)            // Planes
-      .writeWord(bpp * 8)      // Color Mode
-      .writeDWord(0)           // Compression
-      .writeDWord(data.length) // Image Size
-      .writeDWord(0)           // H-Resolution
-      .writeDWord(0)           // V-Resolution
-      .writeDWord(0)           // Used Colors
-      .writeDWord(0);          // Important Colors
+    .prepareBuffer(40)       // 40
+    .writeDWord(40)          // Header Size
+    .writeDWord(width)       // Width
+    .writeDWord(height)      // Height
+    .writeWord(1)            // Planes
+    .writeWord(bpp * 8)      // Color Mode
+    .writeDWord(0)           // Compression
+    .writeDWord(data.length) // Image Size
+    .writeDWord(0)           // H-Resolution
+    .writeDWord(0)           // V-Resolution
+    .writeDWord(0)           // Used Colors
+    .writeDWord(0);          // Important Colors
   }
 
 
@@ -158,5 +158,6 @@ module.exports = class {
   */
 
   export(){
-    return Buffer.concat(this.#buffers,this.#length); }
+    return Buffer.concat(this.#buffers,this.#length);
+  }
 }

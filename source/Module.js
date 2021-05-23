@@ -5,19 +5,30 @@
 
 const
   Icon = require('./Icon.js'),
-  bufferToImage = require('parse-png');
+  bufferToPNG = require('./png/Parse.js');
 
 
 
 /*
-    Convert Buffers
+    Buffers -> ICO Buffer
 */
 
-const convertToIco = async (buffers) => {
+module.exports = async (buffers) => {
 
-  const images = await Promise.all(buffers.map((buffer) => bufferToImage(buffer)));
+  if(!buffers)
+    return null;
 
-  const icon = new Icon;
+  if(!Array.isArray(buffers))
+    buffers = [ buffers ];
+
+  if(buffers.length < 1)
+    return null;
+
+
+  const
+    icon = new Icon,
+    processes = buffers.map(bufferToPNG),
+    images = await Promise.all(processes);
 
 
   /*
@@ -47,11 +58,3 @@ const convertToIco = async (buffers) => {
 
   return icon.export();
 }
-
-
-
-/*
-    Export
-*/
-
-module.exports = convertToIco;
