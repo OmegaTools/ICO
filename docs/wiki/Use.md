@@ -2,8 +2,7 @@
 
 
 ## Limitations
-* Image size < 256 ([Issue](https://github.com/OmegaTools/toIcon/issues/1))
-* [Windows](./wiki/limitations/Windows.md)
+* [Windows](./limitations/Windows.md)
 
 
 ### Generalized
