@@ -55,13 +55,13 @@ const Passes = [
     Calculate Pass Points
 */
 
-exports.calcPoints = (width,height) => {
+exports.calcPoints = (Width,Height) => {
 
   let points = [];
 
   for(const [ xOffset , yOffset , xGap , yGap ] of Passes)
-    for(let y = yOffset;y < height;y += yGap)
-      for(let x = xOffset;x < width;x += xGap)
+    for(let y = yOffset;y < Height;y += yGap)
+      for(let x = xOffset;x < Width;x += xGap)
         points.push(y * width + x);
 
   return points.map((offset) => offset * 4);

@@ -3,19 +3,20 @@
 */
 
 
-const { max , abs , floor , ceil } = Math;
+const { min , abs , ceil , floor } = Math;
 
 
 /*
     Alan W. Paeth Filter
 */
 
-function paeth(A,B,C){
-  const p = A + B - C;
+function paeth(...args){
+  const
+    [ A , B , C ] = args,
+    p = A + B - C,
+    deltas = args.map((x) => abs(p - x));
 
-  return [ A , B , C ]
-    .map((x) => abs(p - x))          // Distance To P
-    .reduce((a,b) => a < b ? a : b); // Closest To P
+  return args[deltas.indexOf(deltas.reduce((a,b) => min(a,b)))];
 }
 
 
@@ -30,23 +31,23 @@ module.exports = (png) => {
 
   const
     buffers = [];
-    bitsPerPixel = (depth % 8 === 0) ? (depth / 8) * bpp : 1;
+    bytesPerPixel = (depth % 8 === 0) ? (depth / 8) * bpp : 1;
 
 
   let
     current,
-    previous,
+    previous = [],
     offset = 0;
 
   let
-    up = (x) => (previous) ? previous[x] : 0,
-    left = (x) => (x >= bitsPerPixel) ? current[x - bitsPerPixel] : 0,
-    upleft = (x) => (x >= bitsPerPixel && previous) ? previous[x - bitsPerPixel] : 0;
+    up = (x) => previous[x] || 0,
+    left = (x) => current[x - bytesPerPixel] || 0,
+    upleft = (x) => previous[x - bytesPerPixel] || 0;
 
   const filters = [
-    left , up ,
-    (x) => round(up(x) + left(x)),
-    (x) => paeth(up(x),left(x),upleft(x))
+    null , left , up ,
+    (x) => floor((up(x) + left(x)) * .5),
+    (x) => paeth(left(x),up(x),upleft(x))
   ];
 
 
@@ -59,25 +60,14 @@ module.exports = (png) => {
 
 
   /*
-      Width In Bytes
-  */
-
-  function bytesPerLine(width){
-    return ceil(width * bpp * depth * .125);
-  }
-
-
-
-  /*
       Apply Filter
   */
 
-  function applyFilter(pass){
+  function applyFilter({ width , height }){
 
-    previous = null;
+    previous = [];
 
     const
-      { width , height } = pass,
       size = bytesPerLine(width),
       bytes = size + 1; // + 1 (Filter Byte)
 
@@ -87,18 +77,19 @@ module.exports = (png) => {
 
     for(let line = 0;line < height;line++){
 
-      const
-        raw = data.slice(offset,offset += bytes),
-        [ filterType , ...source ] = raw;
-
+      const [ filterType , ...source ] = data.slice(offset,offset += bytes);
 
       (filterType === 0)
         ? (current = Uint8Array.from(source))
-        : filter(filters[filterType - 1]);
+        : filter(filters[filterType]);
 
       buffers.push(current);
       previous = current;
 
+
+      /*
+          Filter
+      */
 
       function filter(filter){
         current = Buffer.alloc(size);
@@ -107,5 +98,15 @@ module.exports = (png) => {
           current[x] = source[x] + filter(x);
       }
     }
+  }
+
+
+
+  /*
+      Width In Bytes
+  */
+
+  function bytesPerLine(width){
+    return ceil(width * bpp * depth * .125);
   }
 }

@@ -12,7 +12,7 @@ const { round } = Math;
 
 module.exports = (png) => {
 
-  const { size , data , depth , width , height , type , palette , transparent , transparency } = png;
+  const { type , depth , transparency } = png;
 
 
   if(type === 3) // Is RGB + Palette
@@ -26,6 +26,9 @@ module.exports = (png) => {
 
 
   function copyPalette(){
+
+    const { data , palette } = png;
+
     png.data = Buffer.from([...data]
       .map((pixel) => palette[pixel])
       .flat());
@@ -37,6 +40,8 @@ module.exports = (png) => {
   */
 
   function scrubTransparency(){
+
+    const { size , data , transparency } = png;
 
     const [ R , G , B ] = transparency;
 
@@ -58,6 +63,8 @@ module.exports = (png) => {
   */
 
   function scaleDepth(){
+
+    const { data , size , depth } = png;
 
     let
       offset = 0,

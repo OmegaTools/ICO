@@ -7,7 +7,7 @@ const
   { arrayOf } = require('./Utility.js'),
   { calcPoints } = require('./Interlace.js');
 
-const { pow , ceil } = Math;
+const { ceil } = Math;
 
 
 
@@ -25,6 +25,7 @@ function bytesToValues(png){
 
   if(bytesNeeded < 2)
     return;
+
 
   const size = data.length / bytesNeeded;
 
@@ -54,9 +55,8 @@ function breakIntoPieces(png){
   if(values < 2)
     return;
 
-  const
-    gap = depth,
-    mask = (2 ** depth - 1);
+
+  const mask = (2 ** depth - 1);
 
   data = [...data]
     .map(splitValue)
@@ -67,7 +67,7 @@ function breakIntoPieces(png){
 
   function splitValue(bits){
     return arrayOf(values)
-      .map((_,index) => index * gap)
+      .map((_,index) => index * depth)
       .map((offset) => bits >> offset)
       .map((value) => value & mask);
   }
@@ -80,7 +80,7 @@ function breakIntoPieces(png){
 
 module.exports = (png) => {
 
-  const { bpp , size , data , width , height , depth , passes , interlace } = png;
+  const { bpp , size , data , depth , interlace } = png;
 
   bytesToValues(png)
   breakIntoPieces(png);
@@ -99,7 +99,7 @@ module.exports = (png) => {
 
   const
     hasAlpha = (bpp % 2) === 0,
-    color_max = pow(2,depth) - 1,
+    color_max = 2 ** depth - 1,
     rgbOffsets = (bpp < 3)
       ? [ 0 , 0 , 0 ]
       : [ 0 , 1 , 2 ];
@@ -130,6 +130,9 @@ module.exports = (png) => {
   */
 
   function copyAndAlign(){
+
+    const { width , height } = png;
+
     let offset = 0;
 
     calcPoints(width,height).forEach((target) => {

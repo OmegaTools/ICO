@@ -6,7 +6,7 @@
 const
   zlib = require('zlib'),
   filter = require('./Filter.js'),
-  toBitMap = require('./Bitmap.js'),
+  toBitmap = require('./Bitmap.js'),
   normalize = require('./Normalize.js'),
   { calculatePasses } = require('./Interlace.js');;
 
@@ -14,8 +14,14 @@ const
 const { max , floor } = Math;
 
 const
-  colorToBPP = { 0 : 1 , 2 : 3 , 3 : 1 , 4 : 2 , 6 : 4 },
-  signature = [ 0x89 , 0x50 , 0x4e , 0x47 , 0x0d , 0x0a , 0x1a , 0x0a ];
+  signature = [ 0x89 , 0x50 , 0x4e , 0x47 , 0x0d , 0x0a , 0x1a , 0x0a ],
+  colorTypeToBPP = {
+    0 : 1 , // Grayscale (1)
+    2 : 3 , // RGB (3)
+    3 : 1 , // Indexed (Palette) (1)
+    4 : 2 , // Grayscale (1) + Alpha (1)
+    6 : 4   // RGB (3) + Alpha (1)
+  };
 
 
 
@@ -83,7 +89,7 @@ module.exports = (buffer) => {
 
     png = {
 
-      bpp: colorToBPP[type],
+      bpp: colorTypeToBPP[type],
 
       size: height * width * 4,
 
@@ -178,7 +184,7 @@ module.exports = (buffer) => {
     let options = {};
 
     if(!png.interlace)
-      options.chunkSize = max(height * (floor((width * bpp * depth + 7) / 8) + 1),zlib.Z_MIN_CHUNK);
+      options.chunkSize = max(height * (floor((width * bpp * depth + 7) * .125) + 1),zlib.Z_MIN_CHUNK);
 
     data = interlace ? zlib.inflateSync(data) : zlib.inflateSync(data,options);
 
@@ -198,7 +204,7 @@ module.exports = (buffer) => {
     */
 
     filter(png);
-    toBitMap(png);
+    toBitmap(png);
     normalize(png);
   }
 
