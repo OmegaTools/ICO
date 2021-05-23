@@ -1,4 +1,4 @@
-# ⵠTools - toIcon
+# ΩTools - toIcon
 A standalone vanilla Image to ICO converter.
 
 ### How to
