@@ -87,7 +87,7 @@ module.exports = class {
     .prepareBuffer(40)       // 40
     .writeDWord(40)          // Header Size
     .writeDWord(width)       // Width
-    .writeDWord(height)      // Height
+    .writeDWord(height * 2)  // Height
     .writeWord(1)            // Planes
     .writeWord(bpp * 8)      // Color Mode
     .writeDWord(0)           // Compression
