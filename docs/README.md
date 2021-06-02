@@ -11,3 +11,7 @@ A standalone vanilla Image to ICO converter.
 * [Wikipedia (ICO)](https://en.wikipedia.org/wiki/ICO_(file_format))
 * [Wikipedia (BMP)](https://en.wikipedia.org/wiki/BMP_file_format)
 * [Wikipedia (PNG)](https://en.wikipedia.org/wiki/Portable_Network_Graphics)
+
+
+#License
+[GNU AGPLv3](License)
