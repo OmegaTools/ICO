@@ -13,5 +13,5 @@ A standalone vanilla Image to ICO converter.
 * [Wikipedia (PNG)](https://en.wikipedia.org/wiki/Portable_Network_Graphics)
 
 
-#License
+# License
 [GNU AGPLv3](License)
