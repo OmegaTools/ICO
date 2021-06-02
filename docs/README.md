@@ -14,4 +14,4 @@ A standalone vanilla Image to ICO converter.
 
 
 # License
-[GNU AGPLv3](License)
+[GNU AGPLv3](./LICENSE)
