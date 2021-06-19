@@ -4,6 +4,7 @@ A standalone vanilla Image to ICO converter.
 ### How to
 * [Install](./wiki/Install.md)
 * [Use](./wiki/Use.md)
+* [Applications](./wiki/Applications.md)
 
 ### Info
 * [Supported Formats](./wiki/Supported.md)
