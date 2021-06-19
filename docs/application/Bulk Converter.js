@@ -8,6 +8,8 @@
 const inputDir = `Input`;
 
 //  Icon Output Directory
+//  ! BE CAREFUL WITH THIS !
+//  As the files in this directory are deleted
 
 const outputDir = `Output`;
 
