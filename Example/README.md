@@ -11,7 +11,7 @@
 
 The example application reads two PNG  
 images as bytes, packages them to an ICO  
-and write the data to `Example/Icon.ico`.
+and write the data to `Example/Icon.ico`
 
 <br>
 <br>
