@@ -28,6 +28,8 @@
 
 ## More Information
 
+<br>
+
 [![Button ICO]][ICO]   
 [![Button BMP]][BMP]   
 [![Button PNG]][PNG]
