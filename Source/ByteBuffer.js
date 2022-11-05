@@ -1,85 +1,80 @@
-/*
-    Copyright (c) 2021 JDK.FHWS@gmail.com
-*/
+
+const ByteMask = 0b11111111;
 
 
-const { writeUInt8 , writeUInt16LE , writeUInt32LE } = Buffer.prototype;
-
-const writeMethods = {
-  4: writeUInt32LE,
-  2: writeUInt16LE,
-  1: writeUInt8
-}
+export const Byte = 1;
+export const Word = 2;
+export const Quad = 4;
 
 
-/*
-    ByteBuffer Class
-*/
+export class ByteBuffer {
 
-module.exports = class {
-
-  #buffer;
-  #offset = 0;
+    #buffer;
+    #offset = 0;
 
 
-  constructor(size){
-    this.#buffer = Buffer.alloc(size);
-  }
-
-
-  /*
-      Write Value
-  */
-
-  writeValue(value,format = 0){
-
-    const method = writeMethods[format];
-
-    if(method){
-      method.call(this.#buffer,value,this.#offset);
-      this.#offset += format;
+    constructor ( size ){
+        this.#buffer = new Uint8Array(size);
     }
 
-    return this;
-  }
+    /*
+     *  Write
+     */
+
+    write ( value , byteCount ){
+        
+        do {
+            
+            this.nextByte = value & ByteMask;
+            
+            value >>= 8;
+
+        } while ( -- byteCount )
+
+        return this;
+    }
+
+    writeByte ( byte ){
+        return this.write(byte,1);
+    }
+        
+    writeWord ( word ){
+        return this.write(word,2);
+    }
+
+    writeQuad ( quad ){
+        return this.write(quad,4);
+    }
+    
+    byte ( byte ){
+        return this.write(byte,1);
+    }
+        
+    word ( word ){
+        return this.write(word,2);
+    }
+
+    quad ( quad ){
+        return this.write(quad,4);
+    }
+    
+    // fill ( values ){
+    // 
+    //     while ( values.length ){
+    // 
+    //         const [ type , value ] = 
+    //             values.splice(0,2);
+    // 
+    //         this.write(value,type);
+    //     }
+    // }
 
 
-  /*
-      Write
-  */
-
-  write(value,format){
-    return this.writeValue(value,format); }
-
-
-  /*
-      Byte
-  */
-
-  writeByte(byte){
-    return this.writeValue(byte,1); }
-
-
-  /*
-      Word
-  */
-
-  writeWord(word){
-    return this.writeValue(word,2); }
-
-
-  /*
-      DWord
-  */
-
-  writeDWord(dword){
-    return this.writeValue(dword,4); }
-
-
-  /*
-      Buffer Data
-  */
-
-  get data(){
-    return this.#buffer; }
+    get data (){
+        return this.#buffer;
+    }
+        
+    set nextByte ( value ){
+        this.#buffer[this.#offset++] = value;
+    }
 }

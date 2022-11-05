@@ -1,6 +1,6 @@
-/*
-    Copyright (c) 2021 JDK.FHWS@gmail.com
-*/
 
 
-exports.arrayOf = (size,fill = null) => Array(size).fill(fill);
+export function arrayOf(size,fill = null){
+    return Array(size)
+        .fill(fill);
+}
