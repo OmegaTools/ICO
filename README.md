@@ -9,6 +9,11 @@
 <br>
 <br>
 
+<img
+    src = 'Assets/Logo.png'
+    width = 120
+/>
+
 # ICO
 
 *Image to .ico conversion.*
