@@ -1,19 +1,3 @@
-# ΩTools - toIcon
-A standalone vanilla Image to ICO converter.
-
-### How to
-* [Install](./wiki/Install.md)
-* [Use](./wiki/Use.md)
-* [Applications](./wiki/Applications.md)
-
-### Info
-* [Supported Formats](./wiki/Supported.md)
-* [Specification](./wiki/Specification.md)
-* [Wikipedia ( ICO )](https://en.wikipedia.org/wiki/ICO_(file_format))
-* [Wikipedia ( BMP )](https://en.wikipedia.org/wiki/BMP_file_format)
-* [Wikipedia ( PNG )](https://en.wikipedia.org/wiki/Portable_Network_Graphics)
-
-
 
 <br>
 
@@ -31,32 +15,38 @@ A standalone vanilla Image to ICO converter.
 
 <br>
 
-[![Button Usage]][Usage]   
-[![Button Conversions]][Conversions]
+[![Button Example]][Example]   
+[![Button Format]][Format]
 
 <br>
 <br>
 
-## Examples
+## More Information
+
+[![Button ICO]][ICO]   
+[![Button BMP]][BMP]   
+[![Button PNG]][PNG]
+
+
+<br>
+<br>
+
+## Example
 
 <br>
 
 ```JavaScript
-import * as HSL from 'https://deno.land/x/hsl/mod.ts';
+import * as Icon from 'https://deno.land/x/ico/mod.ts';
 ```
 
 </div>
 
 <br>
 
-### RGB
-
 ```JavaScript
-const rgb = [ 255 , 0 , 0 ]; // Red
+const images = []; // PNG Uint8Arrays
 
-const hsl = HSL.fromRGB(rgb);
-
-console.log(hsl); // [ 0 , 100 , 50 ]
+const icon = Icon.fromPNGs(images); // Uint8Array
 ```
 
 <br>
@@ -64,11 +54,15 @@ console.log(hsl); // [ 0 , 100 , 50 ]
 
 <!----------------------------------------------------------------------------->
 
-[Conversions]: Documentation/Conversions.md
 [License]: LICENSE
-[Usage]: Documentation/Usage.md
-[Deno]: https://deno.land/x/ico
+[Example]: Example
+[Format]: Documentation/Format.md
 [#]: #
+
+[Deno]: https://deno.land/x/ico
+[PNG]: https://en.wikipedia.org/wiki/Portable_Network_Graphics
+[ICO]: https://en.wikipedia.org/wiki/ICO_(file_format)
+[BMP]: https://en.wikipedia.org/wiki/BMP_file_format
 
 
 <!---------------------------------[ Badges ]---------------------------------->
@@ -80,5 +74,8 @@ console.log(hsl); // [ 0 , 100 , 50 ]
 
 <!---------------------------------[ Buttons ]--------------------------------->
 
-[Button Conversions]: https://img.shields.io/badge/Conversions-64BC4B?style=for-the-badge&logoColor=white&logo=Betfair
-[Button Usage]: https://img.shields.io/badge/Usage-04ACE6?style=for-the-badge&logoColor=white&logo=GitBook
+[Button Example]: https://img.shields.io/badge/Example-04ACE6?style=for-the-badge&logoColor=white&logo=GitBook
+[Button Format]: https://img.shields.io/badge/ICO_Format-64BC4B?style=for-the-badge&logoColor=white&logo=BookStack
+[Button ICO]: https://img.shields.io/badge/ICO_Format-EEEEEE?style=for-the-badge&logoColor=222222&logo=WikiPedia
+[Button BMP]: https://img.shields.io/badge/BMP_Format-EEEEEE?style=for-the-badge&logoColor=222222&logo=WikiPedia
+[Button PNG]: https://img.shields.io/badge/PNG_Format-EEEEEE?style=for-the-badge&logoColor=222222&logo=WikiPedia

@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-all
 
-import toIcon from '../Source/mod.ts'
+import { fromPNGs } from '../Source/mod.ts'
 import * as Paths from './Paths.js'
 
 
@@ -28,7 +28,7 @@ for(const path of Paths.images){
 
 //  Convert the buffers into an icon.
     
-const icon = await toIcon(buffers);
+const icon = await fromPNGs(buffers);
 
 
 //  Save the icon.
