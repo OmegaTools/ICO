@@ -1,10 +1,15 @@
 
-
+import { concat } from './Imports.ts'
 import toPNG from './png/Parse.js'
 import Icon from './Icon.js'
 
+import addBitmapHeader from './Icon/BitmapHeader.js'
+import addDictionary from './Icon/Dictionary.js'
+import addBitmapData from './Icon/BitmapData.js'
+import addHeader from './Icon/Header.js'
 
-/*
+
+/**
  *  Buffers -> ICO Buffer
  */
 
@@ -16,40 +21,35 @@ export default async function convert(buffers){
     if(!Array.isArray(buffers))
         buffers = [ buffers ];
 
-    if(buffers.length < 1)
+
+    const imageCount = buffers.length;
+
+    if(imageCount < 1)
         return null;
 
 
     const
-        icon = new Icon,
-        processes = await Promise.all(buffers.map(toPNG)),
-        images = await Promise.all(processes);
+        processes = await Promise.all(buffers.map(toPNG)) ,
+        images = await Promise.all(processes) ;
 
 
-    /*
-     *  Header
-     */
-
-    icon.addHeader(images.length);
-
-
-    /*
-     *  Dictionaries
-     */
-
-    for(const image of images)
-        icon.addDictionary(image);
-
-
-    /*
-     *  Content
-     */
-
-    for(const image of images){
-        icon.addBitmapHeader(image);
-        icon.addBitmapData(image);
+    const icon = {
+        buffers : [] ,
+        length : 0 ,
+        offset : 0
     }
 
 
-    return icon.export();
+    addHeader(icon,imageCount);
+
+    for(const image of images)
+        addDictionary(icon,image);
+
+    for(const image of images){
+        addBitmapHeader(icon,image);
+        addBitmapData(icon,image);
+    }
+    
+
+    return concat( ... icon.buffers )
 }
