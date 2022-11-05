@@ -1,19 +1,17 @@
 
-import { concat } from './Imports.ts'
-import toPNG from './png/Parse.js'
-import Icon from './Icon.js'
-
 import addBitmapHeader from './Icon/BitmapHeader.js'
 import addDictionary from './Icon/Dictionary.js'
 import addBitmapData from './Icon/BitmapData.js'
+import { concat } from './Imports.ts'
 import addHeader from './Icon/Header.js'
+import toPNG from './png/Parse.js'
 
 
 /**
  *  Buffers -> ICO Buffer
  */
 
-export default async function convert(buffers){
+export default async function convert ( buffers ){
 
     if(!buffers)
         return null;

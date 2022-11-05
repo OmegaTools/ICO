@@ -8,20 +8,20 @@ import ByteArray from '../Misc/ByteArray.js'
 
 export default function addBitmapData ( icon , options ){
 
-    const 
-        { width: w , height : h , bpp , data } = options ,
-        { length } = data ;
+    const { width , height , bpp , data } = options;
+        
+    const pixelCount = data.length;
 
 
-    const bytes = new ByteArray(length);
+    const bytes = new ByteArray(pixelCount);
 
-    for ( let y = h - 1 ; y >= 0 ; y-- )
-        for ( let x = 0 ; x < w ; x++ )
-            copyPixel((y * w + x) * bpp);
+    for ( let y = height - 1 ; y >= 0 ; y-- )
+        for ( let x = 0 ; x < width ; x++ )
+            copyPixel((y * width + x) * bpp);
 
 
     icon.buffers.push(bytes);
-    icon.length += length;
+    icon.length += pixelCount;
 
 
     /*
